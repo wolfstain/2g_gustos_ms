@@ -112,6 +112,120 @@ paths:
           description: unexpected error
           schema:
             $ref: '#/definitions/ErrorModel'
+  '/pleasures':
+    get:
+      summary: Returns all pleasures
+      operationId: getAllPleasures
+      parameters:
+        - name: category
+          in: query
+          description: filter pleasures by categoryId 
+          required: false
+          type: integer
+        - name: user
+          in: query
+          description: filter pleasures by userId 
+          required: false
+          type: integer
+        - name: name
+          in: query
+          description: filter pleasures by like name
+          required: false
+          type: integer
+      responses:
+        '200':
+          description: Ok
+          schema:
+            $ref: '#/definitions/PleasureList'
+        '406':
+          description: Not Acceptable (Invalid Params)
+          schema:
+            $ref: '#/definitions/ErrorModel'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/ErrorModel'
+  '/pleasure/{id}':
+    get:
+      summary: Returns a pleasure with the given id
+      operationId: getPleasureById
+      parameters:
+        - name: id
+          in: path
+          description: The id of the pleasure to be returned
+          required: true
+          type: integer
+      responses:
+        '200':
+          description: Ok
+          schema:
+            $ref: '#/definitions/Pleasure'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/ErrorModel'
+        '406':
+          description: Not Acceptable (Invalid Params)
+          schema:
+            $ref: '#/definitions/ErrorModel'
+        '500':
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/ErrorModel'
+    put:
+      summary: Updates a pleasure with the given id
+      operationId: updatePleasure
+      parameters:
+        - name: id
+          in: path
+          description: The id of the pleasure to be updated
+          required: true
+          type: integer
+        - name: category
+          in: body
+          required: true
+          description: Pleasure Object
+          schema:
+            $ref: '#/definitions/PleasureInput'
+      responses:
+        '204':
+          description: No Content
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/ErrorModel'
+        '406':
+          description: Not Acceptable (Invalid Params)
+          schema:
+            $ref: '#/definitions/ErrorModel'
+        '500':
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/ErrorModel'
+    delete:
+      summary: Deletes a pleasure with the given id
+      operationId: deletePleasure
+      parameters:
+        - name: id
+          in: path
+          description: The id of the pleasure to be deleted
+          required: true
+          type: integer
+      responses:
+        '204':
+          description: No Content
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/ErrorModel'
+        '406':
+          description: Not Acceptable (Invalid Params)
+          schema:
+            $ref: '#/definitions/ErrorModel'
+        '500':
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/ErrorModel'
 definitions:
   Category:
     type: object
@@ -139,6 +253,40 @@ definitions:
         type: array
         items:
           $ref: '#/definitions/Category'
+  Pleasure:
+    type: object
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+      description:
+        type: string
+      user_id:
+        type: integer
+      category_id:
+        type: integer
+  PleasureInput:
+    type: object
+    properties:
+      name:
+        type: string
+      description:
+        type: string
+      user_id:
+        type: integer
+      category_id:
+        type: integer
+  PleasureList:
+    type: object
+    required:
+      - total
+      - list
+    properties:
+      list:
+        type: array
+        items:
+          $ref: '#/definitions/Pleasure'
   ErrorModel:
     type: object
     required:
