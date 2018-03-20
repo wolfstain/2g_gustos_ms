@@ -24,7 +24,7 @@ services:
       volumes_from:
         - applications
       extra_hosts:
-        - "dockerhost:10.0.75.1"
+        - "dockerhost:192.168.99.101"
       ports:
         - "2222:22"
       tty: true
@@ -51,7 +51,7 @@ services:
       depends_on:
         - workspace
       extra_hosts:
-        - "dockerhost:10.0.75.1"
+        - "dockerhost:192.168.99.101"
       environment:
         - PHP_IDE_CONFIG=laradock
       networks:
@@ -70,7 +70,7 @@ services:
       depends_on:
         - workspace
       extra_hosts:
-        - "dockerhost:10.0.75.1"
+        - "dockerhost:192.168.99.101"
       networks:
         - backend
 
