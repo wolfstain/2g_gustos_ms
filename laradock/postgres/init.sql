@@ -1,2 +1,0 @@
-CREATE DATABASE gustos_db;
-GRANT ALL PRIVILEGES ON DATABASE gustos_db TO postgres;
