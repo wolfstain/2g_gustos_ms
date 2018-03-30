@@ -1,0 +1,4 @@
+class Subcategory < ApplicationRecord
+  belong_to :category
+  has_many :pleasures
+end
