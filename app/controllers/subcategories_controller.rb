@@ -1,9 +1,9 @@
 class SubcategoriesController < ApplicationController
   before_action :set_subcategory, only: [:show, :update, :destroy]
-
+  has_scope :by_name, :by_category
   # GET /subcategories
   def index
-    @subcategories = Subcategory.all
+    @subcategories = apply_scopes(Subcategory).all
 
     render json: @subcategories
   end

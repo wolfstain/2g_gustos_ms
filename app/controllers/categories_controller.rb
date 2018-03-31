@@ -1,9 +1,9 @@
 class CategoriesController < ApplicationController
   before_action :set_category, only: [:show, :update, :destroy]
-
+  has_scope :by_name
   # GET /categories
   def index
-    @categories = Category.all
+    @categories = apply_scopes(Category).all
 
     render json: @categories
   end

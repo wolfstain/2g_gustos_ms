@@ -1,10 +1,9 @@
 class PleasuresController < ApplicationController
   before_action :set_pleasure, only: [:show, :update, :destroy]
-
+  has_scope :by_subcategory, :by_user, :by_category, :by_name
   # GET /pleasures
   def index
-    @pleasures = Pleasure.all
-
+    @pleasures = apply_scopes(Pleasure).all
     render json: @pleasures
   end
 

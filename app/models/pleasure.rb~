@@ -1,3 +1,0 @@
-class Pleasure < ApplicationRecord
-  belongs_to :subcategory
-end
