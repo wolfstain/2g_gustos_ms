@@ -1,24 +1,23 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+El microservicio gustos_ms hace parte de la aplicación dop-app la cual se desrraollo en:
 
-Things you may want to cover:
+* Ruby version  2.3
+* Rails version 5.1.6
+* Postgresql 9.5.12
 
-* Ruby version
+Para su despliegue es necesario instalar:
 
-* System dependencies
+* Docker
+* Docker-compose
 
-* Configuration
+Para su despliegue use los siguientes comandos:
 
-* Database creation
+``` bash
+gustos_ms$ docker-compose build
+gustos_ms$ docker-compose run --rm gustos_ms rails db:create
+gustos_ms$ docker-compose run --rm gustos_ms rails db:migrate
+gustos_ms$ docker-compose up
+```
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+El funcionamiento se puede encontar en el archivo descriptor (api.yaml)
