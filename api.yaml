@@ -14,7 +14,7 @@ consumes:
 produces:
   - application/json
 paths:
-  '/categories':
+  /categories:
     get:
       summary: Returns all categories
       operationId: getAllCategories
@@ -137,7 +137,7 @@ paths:
           description: unexpected error
           schema:
             $ref: '#/definitions/ErrorModel'
-  '/subcategories':
+  /subcategories:
     get:
       summary: Returns all subcategories
       operationId: getAllSubCategories
@@ -157,6 +157,27 @@ paths:
           description: Ok
           schema:
             $ref: '#/definitions/SubcategoryList'
+        '422':
+          description: Unprocessable Entity
+          schema:
+            $ref: '#/definitions/UnprocessableEntityModel'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/ErrorModel'
+    post:
+      summary: Create new subcategory
+      operationId: newSubcategory
+      parameters:
+        - name: subcategory
+          in: body
+          required: true
+          description: Subcategory Object
+          schema:
+            $ref: '#/definitions/SubcategoryInput'
+      responses:
+        '201':
+          description: Created
         '422':
           description: Unprocessable Entity
           schema:
@@ -246,19 +267,19 @@ paths:
           description: unexpected error
           schema:
             $ref: '#/definitions/ErrorModel'
-  '/pleasures':
+  /pleasures:
     get:
       summary: Returns all pleasures
       operationId: getAllPleasures
       parameters:
         - name: by_subcategory
           in: query
-          description: filter pleasures by subcategoryId 
+          description: filter pleasures by subcategoryId
           required: false
           type: integer
         - name: by_user
           in: query
-          description: filter pleasures by userId 
+          description: filter pleasures by userId
           required: false
           type: integer
         - name: by_category
@@ -280,6 +301,27 @@ paths:
           description: Not Acceptable (Invalid Params)
           schema:
             $ref: '#/definitions/ErrorModel'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/ErrorModel'
+    post:
+      summary: Create new pleasure
+      operationId: newPleasure
+      parameters:
+        - name: pleasure
+          in: body
+          required: true
+          description: Pleasure Object
+          schema:
+            $ref: '#/definitions/PleasureInput'
+      responses:
+        '201':
+          description: Created
+        '422':
+          description: Unprocessable Entity
+          schema:
+            $ref: '#/definitions/UnprocessableEntityModel'
         '500':
           description: Internal Server Error
           schema:
@@ -496,6 +538,5 @@ definitions:
       field:
         type: array
         items:
-            type: string
-            description: "Error fill field"
-          
+          type: string
+          description: Error fill field
