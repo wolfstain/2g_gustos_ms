@@ -13,5 +13,4 @@ class Pleasure < ApplicationRecord
   scope :by_category, -> (category_id) {
     joins(:subcategory).where(:subcategories => {category_id: category_id}) if category_id.present?
   }
-                                        
 end

@@ -3,7 +3,7 @@ class SubcategoriesController < ApplicationController
   has_scope :by_name, :by_category
   # GET /subcategories
   def index
-    @subcategories = apply_scopes(Subcategory).all
+    @subcategories = apply_scopes(Subcategory).all.includes(:category)
 
     render json: @subcategories
   end

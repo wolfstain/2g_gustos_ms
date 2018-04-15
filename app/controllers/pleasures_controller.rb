@@ -3,7 +3,7 @@ class PleasuresController < ApplicationController
   has_scope :by_subcategory, :by_user, :by_category, :by_name
   # GET /pleasures
   def index
-    @pleasures = apply_scopes(Pleasure).all
+    @pleasures = apply_scopes(Pleasure).all.includes(:subcategory)
     render json: @pleasures
   end
 
