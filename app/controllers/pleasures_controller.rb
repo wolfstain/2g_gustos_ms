@@ -34,7 +34,8 @@ class PleasuresController < ApplicationController
 
   # DELETE /pleasures/1
   def destroy
-    @pleasure.destroy
+    @pleasure.destroy 
+    render json: @pleasure 
   end
 
   private
