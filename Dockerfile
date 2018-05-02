@@ -8,3 +8,5 @@ ADD Gemfile.lock /gustos_ms/Gemfile.lock
 
 RUN bundle install
 ADD . /gustos_ms
+
+EXPOSE 4006
