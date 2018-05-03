@@ -1,15 +1,15 @@
 version: '2'
 services:
-  gustos_db:
+  gustos-db:
     image: postgres
     volumes:
       - ./tmp/db:/var/lib/postgresql/data
     ports:
       - "5432:5432"
-  gustos_ms:
+  gustos-ms:
     build: .
     command: bash -c "sleep 40 && rm -f tmp/pids/server.pid && bundle exec rails db:migrate && bundle exec rails s -p 4006 -b '0.0.0.0'"
     ports:
       - "4006:4006"
     depends_on:
-      - gustos_db
+      - gustos-db
